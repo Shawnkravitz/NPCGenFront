@@ -1,4 +1,5 @@
 .App {
+  text-align: center; /* This centers the text inside the container */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,11 +7,40 @@
   background-color: #808080; /* This sets the background color to gray */
 }
 
+/* Centering the button */
+.button-container {
+  text-align: center; /* This centers the button inside the container */
+}
+
+/* Styling the button */
+.button-style {
+  background-color: #4CAF50; /* Green background */
+  border: none; /* No border */
+  color: white; /* White text */
+  padding: 15px 32px; /* Top and bottom padding of 15px, left and right padding of 32px */
+  text-align: center; /* Center the text inside the button */
+  text-decoration: none; /* No underline on the text */
+  display: inline-block; /* Allows the button to have width and padding */
+  font-size: 16px; /* Set the font size */
+  margin: 4px 2px; /* Margin around the button */
+  cursor: pointer; /* Change mouse cursor on hover */
+  border-radius: 4px; /* Rounded corners */
+  transition-duration: 0.4s; /* Makes a smooth transition for hover effect */
+}
+
+/* Hover effect for button */
+.button-style:hover {
+  background-color: #45a049; /* Darker shade of button color */
+}
+
+
+
 .loading, .error {
   margin-top: 20px;
 }
 
 .npc-generator {
+  width: 10%;
   /* Styles for the generator controls */
 }
 
@@ -24,7 +54,7 @@
 }
 
 .description {
-  width: 33.33%; /* Set the width to 1/3 of the parent's width */
+  width: 33.3%; /* Set the width to 1/3 of the parent's width */
   margin: 10px auto; /* Auto margins on the sides centers the div horizontally */
   border: 1px solid #ccc;
   padding: 20px;
@@ -39,4 +69,10 @@
 
 .description h2 {
   margin-top: 10;
+}
+
+/* Add this if your sections are block elements and not centered */
+.description-container, .personality-container, .stats-container, .skills-container, .name-container {
+  width: 90%; /* Adjust width as needed */
+  margin: 20px auto; /* Adds top and bottom margin and auto centers horizontally */
 }
