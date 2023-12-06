@@ -5,7 +5,7 @@ const NameComponent = ({ name }) => {
   return (
     <div className="name-container">
       <h2>Character Name</h2>
-      <p>{name}</p>
+      <h3>{name}</h3>
     </div>
   );
 };

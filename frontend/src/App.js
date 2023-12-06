@@ -6,41 +6,61 @@ import PersonalityComponent from './PersonalityComponent';
 import SkillsComponent from './SkillsComponent';
 import StatsComponent from './StatsComponent';
 import NameComponent from './NameComponent';
+import ClassComponent from './ClassComponent';
 
 function App() {
   const [description, setDescription] = useState({
     greeting: '',
     name: '',
+    className: '',
     description: '',
     personality: '',
     stats: '',
     skills: '',
   });
 
-  // Function to update the description
-  const fetchDescription = (name = "World") => {
-    // You can use Promise.all to handle multiple requests
-  Promise.all([
-    axios.get(`http://localhost:8081/greeting`, { params: { name } }),
-    axios.get(`http://localhost:8081/description`),
-    axios.get(`http://localhost:8081/stats`),
-  ])
-  .then(responses => {
-    const [greetingResponse, descriptionResponse, statsResponse] = responses;
+// Function to update the description
+const fetchDescription = (name = "World") => {
+  // First, get the class name
+  axios.get(`http://localhost:8081/class`)
+    .then(classResponse => {
+      // Extract the className from the classResponse
 
-    // Now set the state once with all the new data
-    setDescription(prevDescription => ({
-      ...prevDescription, // Spread the existing state to preserve other properties
-      name: greetingResponse.data.content, // You might want to adjust this, as you probably don't want the name to be the content of the greeting
-      description: descriptionResponse.data.content,
-      stats: statsResponse.data.content,
-      // personality, stats, and skills should be updated similarly when their respective endpoints are available
-    }));
-  })
-  .catch(error => {
-    console.error('There was a problem with the Axios operations:', error);
-  });
-  };
+      const classNameConst = classResponse.data.content; // Make sure this matches the structure of your response
+      console.log("Full class response:", classResponse); // Log the full response
+
+      console.log("Received class name:", classNameConst);
+      // Now that you have the className, make the other requests in parallel
+      return Promise.all([
+        axios.get(`http://localhost:8081/name`, { params: { name } }),
+        axios.get(`http://localhost:8081/description`, { params: { className: classNameConst } }), // Corrected the params object
+        axios.get(`http://localhost:8081/stats`),
+        axios.get(`http://localhost:8081/personality`, { params: { className: classNameConst } }),
+        axios.get(`http://localhost:8081/skills`, { params: { className: classNameConst } })
+      ]).then(responses => {
+        // Handle the responses from greeting, description, and stats
+        const [greetingResponse, descriptionResponse, statsResponse, personalityResponse, 
+        skillsResponse] = responses;
+
+        // Now set the state once with all the new data
+        setDescription(prevDescription => ({
+          ...prevDescription, // Spread the existing state to preserve other properties
+          name: greetingResponse.data.content,
+          description: descriptionResponse.data.content,
+          stats: statsResponse.data.content,
+          personality: personalityResponse.data.content,
+          skills: skillsResponse.data.content,
+          className: classNameConst, // Set the className from the initial request; no .content here unless your data structure requires it
+          // personality and skills should be updated similarly when their respective endpoints are available
+        }));
+      });
+    })
+    .catch(error => {
+      console.error('There was a problem with the Axios operations:', error);
+    });
+};
+
+
 
   // This function will be called when "Generate Character" button is clicked
   const handleGenerateCharacter = () => {
@@ -56,8 +76,9 @@ function App() {
       <div className="npc-display">
         <div className="description">
           <NameComponent name={description.name} />
+          <ClassComponent className={description.className} />
           <DescriptionComponent description={description.description} />
-          <PersonalityComponent traits={description.personality} />
+          <PersonalityComponent personality={description.personality} />
           <StatsComponent stats={description.stats} />
           <SkillsComponent skills={description.skills} />
           {/* Adding the Generate Character button */}

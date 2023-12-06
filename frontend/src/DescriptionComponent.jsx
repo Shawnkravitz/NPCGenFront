@@ -5,7 +5,7 @@ const DescriptionComponent = ({ description }) => {
   return (
     <div className="description-container">
       <h2>Description</h2>
-      <p>{description}</p>
+      <h3>{description}</h3>
     </div>
   );
 };

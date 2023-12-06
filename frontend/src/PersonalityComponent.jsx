@@ -5,7 +5,7 @@ const PersonalityComponent = ({ personality }) => {
   return (
     <div className="personality-container">
       <h2>Personality</h2>
-      <p>{personality}</p>
+      <h3>{personality}</h3>
     </div>
   );
 };
