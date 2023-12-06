@@ -1,0 +1,25 @@
+.name-container {
+    text-align: center; /* This centers the text inside the container */
+    background-color: #f0f0f0; /* Light grey background */
+    border: 1px solid #d3d3d3; /* Grey border */
+    border-radius: 4px; /* Rounded corners */
+    padding: 16px; /* Spacing inside the container */
+    margin-bottom: 16px; /* Spacing below the container */
+    max-width: 600px; /* Maximum width of the container */
+    background-image: url('OIP.jfif'); /* Replace with the path to your image */
+    background-size: cover; /* This stretches the image to cover the entire div */
+    background-repeat: no-repeat; /* This prevents the image from repeating */
+    background-position: center; /* This centers the image in the div */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow to the box */
+  }
+  
+  .name-container h2 {
+    color: #333; /* Dark grey color for the heading */
+    margin-bottom: 8px; /* Spacing below the heading */
+  }
+  
+  .name-container p {
+    color: #666; /* Grey color for the paragraph */
+    line-height: 1.6; /* Line height for the paragraph */
+  }
+  
