@@ -22,7 +22,7 @@ function App() {
 // Function to update the description
 const fetchDescription = (name = "World") => {
   // First, get the class name
-  axios.get(`http://localhost:8081/class`)
+  axios.get(`http://npcworldgen-env.eba-cj322dz4.us-east-1.elasticbeanstalk.com/class`)
     .then(classResponse => {
       // Extract the className from the classResponse
 
@@ -32,11 +32,11 @@ const fetchDescription = (name = "World") => {
       console.log("Received class name:", classNameConst);
       // Now that you have the className, make the other requests in parallel
       return Promise.all([
-        axios.get(`http://localhost:8081/name`, { params: { name } }),
-        axios.get(`http://localhost:8081/description`, { params: { className: classNameConst } }), // Corrected the params object
-        axios.get(`http://localhost:8081/stats`),
-        axios.get(`http://localhost:8081/personality`, { params: { className: classNameConst } }),
-        axios.get(`http://localhost:8081/skills`, { params: { className: classNameConst } })
+        axios.get(`http://npcworldgen-env.eba-cj322dz4.us-east-1.elasticbeanstalk.com/name`, { params: { name } }),
+        axios.get(`http://npcworldgen-env.eba-cj322dz4.us-east-1.elasticbeanstalk.com/description`, { params: { className: classNameConst } }), // Corrected the params object
+        axios.get(`http://npcworldgen-env.eba-cj322dz4.us-east-1.elasticbeanstalk.com/stats`),
+        axios.get(`http://npcworldgen-env.eba-cj322dz4.us-east-1.elasticbeanstalk.com/personality`, { params: { className: classNameConst } }),
+        axios.get(`http://npcworldgen-env.eba-cj322dz4.us-east-1.elasticbeanstalk.com/skills`, { params: { className: classNameConst } })
       ]).then(responses => {
         // Handle the responses from greeting, description, and stats
         const [greetingResponse, descriptionResponse, statsResponse, personalityResponse, 
