@@ -19,46 +19,46 @@ function App() {
     skills: '',
   });
 
-// Function to update the description
-const fetchDescription = (name = "World") => {
-  // First, get the class name
-  axios.get(`http://34.234.155.243//class`)
-    .then(classResponse => {
-      // Extract the className from the classResponse
+  // Function to update the description
+  const fetchDescription = (name = "World") => {
+    // First, get the class name
+    axios.get(`http://34.234.155.243//class`)
+      .then(classResponse => {
+        // Extract the className from the classResponse
 
-      const classNameConst = classResponse.data.content; // Make sure this matches the structure of your response
-      console.log("Full class response:", classResponse); // Log the full response
+        const classNameConst = classResponse.data.content; // Make sure this matches the structure of your response
+        console.log("Full class response:", classResponse); // Log the full response
 
-      console.log("Received class name:", classNameConst);
-      // Now that you have the className, make the other requests in parallel
-      return Promise.all([
-        axios.get(`http://34.234.155.243//name`, { params: { name } }),
-        axios.get(`http://34.234.155.243//description`, { params: { className: classNameConst } }), // Corrected the params object
-        axios.get(`http://34.234.155.243//stats`),
-        axios.get(`http://34.234.155.243//personality`, { params: { className: classNameConst } }),
-        axios.get(`http://34.234.155.243//skills`, { params: { className: classNameConst } })
-      ]).then(responses => {
-        // Handle the responses from greeting, description, and stats
-        const [greetingResponse, descriptionResponse, statsResponse, personalityResponse, 
-        skillsResponse] = responses;
+        console.log("Received class name:", classNameConst);
+        // Now that you have the className, make the other requests in parallel
+        return Promise.all([
+          axios.get(`http://34.234.155.243//name`, { params: { name } }),
+          axios.get(`http://34.234.155.243//description`, { params: { className: classNameConst } }), // Corrected the params object
+          axios.get(`http://34.234.155.243//stats`),
+          axios.get(`http://34.234.155.243//personality`, { params: { className: classNameConst } }),
+          axios.get(`http://34.234.155.243//skills`, { params: { className: classNameConst } })
+        ]).then(responses => {
+          // Handle the responses from greeting, description, and stats
+          const [greetingResponse, descriptionResponse, statsResponse, personalityResponse,
+            skillsResponse] = responses;
 
-        // Now set the state once with all the new data
-        setDescription(prevDescription => ({
-          ...prevDescription, // Spread the existing state to preserve other properties
-          name: greetingResponse.data.content,
-          description: descriptionResponse.data.content,
-          stats: statsResponse.data.content,
-          personality: personalityResponse.data.content,
-          skills: skillsResponse.data.content,
-          className: classNameConst, // Set the className from the initial request; no .content here unless your data structure requires it
-          // personality and skills should be updated similarly when their respective endpoints are available
-        }));
+          // Now set the state once with all the new data
+          setDescription(prevDescription => ({
+            ...prevDescription, // Spread the existing state to preserve other properties
+            name: greetingResponse.data.content,
+            description: descriptionResponse.data.content,
+            stats: statsResponse.data.content,
+            personality: personalityResponse.data.content,
+            skills: skillsResponse.data.content,
+            className: classNameConst, // Set the className from the initial request; no .content here unless your data structure requires it
+            // personality and skills should be updated similarly when their respective endpoints are available
+          }));
+        });
+      })
+      .catch(error => {
+        console.error('There was a problem with the Axios operations:', error);
       });
-    })
-    .catch(error => {
-      console.error('There was a problem with the Axios operations:', error);
-    });
-};
+  };
 
 
 
@@ -74,15 +74,14 @@ const fetchDescription = (name = "World") => {
         <button className="button-style" onClick={handleGenerateCharacter}>Generate Character</button>
       </div>
       <div className="npc-display">
-        <div className="description">
-          <NameComponent name={description.name} />
-          <ClassComponent className={description.className} />
-          <DescriptionComponent description={description.description} />
-          <PersonalityComponent personality={description.personality} />
-          <StatsComponent stats={description.stats} />
-          <SkillsComponent skills={description.skills} />
-          {/* Adding the Generate Character button */}
-          
+        <div className="npc-display">
+          <div><NameComponent name={description.name} /></div>
+          <div><ClassComponent className={description.className} /></div>
+          <div><DescriptionComponent description={description.description} /></div>
+          <div><PersonalityComponent personality={description.personality} /></div>
+          <div><StatsComponent stats={description.stats} /></div>
+          <div><SkillsComponent skills={description.skills} /></div>
+          {/* Additional components */}
         </div>
         {/* ...additional sections like Personality, Abilities, etc. */}
       </div>
