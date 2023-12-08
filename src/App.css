@@ -68,7 +68,7 @@
     border: 1px solid #ccc;
     padding: 20px;
     border-radius: 8px;
-    background-image: url('OIP.jfif'); /* Replace with the path to your image */
+    background-image: url('OIP.jpg'); /* Replace with the path to your image */
     background-size: cover; /* This stretches the image to cover the entire div */
     background-repeat: no-repeat; /* This prevents the image from repeating */
     background-position: center; /* This centers the image in the div */
@@ -85,7 +85,7 @@
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
-  background-image: url('OIP.jfif'); /* Replace with the path to your image */
+  background-image: url('OIP.jpg'); /* Replace with the path to your image */
   background-size: cover; /* This stretches the image to cover the entire div */
   background-repeat: no-repeat; /* This prevents the image from repeating */
   background-position: center; /* This centers the image in the div */
