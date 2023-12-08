@@ -46,12 +46,16 @@
 }
 
 .npc-display {
-  display: flex; /* Use flexbox to layout children */
-  flex-direction: column; /* Stack children vertically */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px; /* Adjust for spacing between components */
   align-items: center; /* Center children horizontally */
-  width: 100%;
   background-color: #ffffff; /* Gray background */
   padding: 20px 0; /* Padding at top and bottom */
+}
+
+.npc-display > div {
+  /* Additional styling for your components */
 }
 
 .class{
@@ -104,3 +108,4 @@
   align-items: center; /* This will center the children */
   justify-content: center;
 }
+
