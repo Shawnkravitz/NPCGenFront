@@ -1,5 +1,5 @@
 import React from 'react';
-import './ClassComponent.css'; // Assuming you have a CSS file for styling
+import './App.css'; // Assuming you have a CSS file for styling
 
 const ClassComponent = ({ className }) => {
   return (

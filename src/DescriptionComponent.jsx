@@ -1,5 +1,5 @@
 import React from 'react';
-import './DescriptionComponent.css'; // Assuming you have a CSS file for styling
+import './App.css'; // Assuming you have a CSS file for styling
 
 const DescriptionComponent = ({ description }) => {
   return (

@@ -22,7 +22,7 @@ function App() {
   // Function to update the description
   const fetchDescription = (name = "World") => {
     // First, get the class name
-    axios.get(`https://api.npcworldgenerator.com//class`)
+    axios.get(`https://api.npcworldgenerator.com/class`)
       .then(classResponse => {
         // Extract the className from the classResponse
 
@@ -74,7 +74,6 @@ function App() {
         <button className="button-style" onClick={handleGenerateCharacter}>Generate Character</button>
       </div>
       <div className="npc-display">
-        <div className="npc-display">
           <div><NameComponent name={description.name} /></div>
           <div><ClassComponent className={description.className} /></div>
           <div><DescriptionComponent description={description.description} /></div>
@@ -82,7 +81,6 @@ function App() {
           <div><StatsComponent stats={description.stats} /></div>
           <div><SkillsComponent skills={description.skills} /></div>
           {/* Additional components */}
-        </div>
         {/* ...additional sections like Personality, Abilities, etc. */}
       </div>
     </div>

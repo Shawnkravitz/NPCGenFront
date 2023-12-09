@@ -1,16 +1,45 @@
 .App {
-  text-align: center; /* This centers the text inside the container */
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 20px;
-  background-color: #ffffff; /* This sets the background color to gray */
+  background-color: #ffffff;
+}
+
+.npc-display {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates three columns */
+  grid-gap: 10px; /* Adjust for spacing between components */
+  width: 100%; /* Adjust width as needed, or max-width for maximum width */
+  max-width: 960px; /* Adjust as needed */
+  margin: 0 auto; /* Centers the grid in the parent container */
+}
+
+.npc-display > div {
+  min-height: 150px; /* Set a min-height that you think will hold your largest content */
+  width: 90%; /* Or whatever width you prefer */
+  margin-bottom: 20px; /* Spacing between elements */
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  flex-grow: 1; /* This will make all the child divs grow as large as the tallest one */
 }
 
 /* Centering the button */
 .button-container {
   text-align: center; /* This centers the button inside the container */
+  margin-bottom: 20px;
 }
 
 /* Styling the button */
@@ -34,8 +63,6 @@
   background-color: #45a049; /* Darker shade of button color */
 }
 
-
-
 .loading, .error {
   margin-top: 20px;
 }
@@ -43,19 +70,6 @@
 .npc-generator {
   width: 10%;
   /* Styles for the generator controls */
-}
-
-.npc-display {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px; /* Adjust for spacing between components */
-  align-items: center; /* Center children horizontally */
-  background-color: #ffffff; /* Gray background */
-  padding: 20px 0; /* Padding at top and bottom */
-}
-
-.npc-display > div {
-  /* Additional styling for your components */
 }
 
 .class{
@@ -101,11 +115,44 @@
 
 /* Add this if your sections are block elements and not centered */
 .description-container, .personality-container, .stats-container, .skills-container, .name-container, .npc-display, .class-container, .description, .App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 150px; /* Match this with the min-height of .npc-display > div if needed */
+  width: 90%; 
+}
+
+/* Add this if your sections are block elements and not centered */
+.description-container, .personality-container, .stats-container, .skills-container, .name-container, .class-container {
   width: 90%; /* Adjust width as needed */
   margin: 20px auto; /* Adds top and bottom margin and auto centers horizontally */
   display: flex;
   flex-direction: column;
   align-items: center; /* This will center the children */
   justify-content: center;
+  text-align: center; /* This centers the text inside the container */
+  background-color: #f0f0f0; /* Light grey background */
+  border: 1px solid #d3d3d3; /* Grey border */
+  border-radius: 4px; /* Rounded corners */
+  padding: 16px; /* Spacing inside the container */
+  margin-bottom: 16px; /* Spacing below the container */
+  max-width: 600px; /* Maximum width of the container */
+  background-image: url('OIP.jpg'); /* Replace with the path to your image */
+  background-size: cover; /* This stretches the image to cover the entire div */
+  background-repeat: no-repeat; /* This prevents the image from repeating */
+  background-position: center; /* This centers the image in the div */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow to the box */
+}
+
+.description-container h2 , .personality-container h2 , .stats-container h2 , .skills-container h2 , .name-container h2 , .class-container h2 {
+  color: #333; /* Dark grey color for the heading */
+  margin-bottom: 8px; /* Spacing below the heading */
+}
+
+.description-container p , .personality-container p , .stats-container p , .skills-container p ,
+ .name-container p , .class-container p {
+  color: #666; /* Grey color for the paragraph */
+  line-height: 1.6; /* Line height for the paragraph */
 }
 
