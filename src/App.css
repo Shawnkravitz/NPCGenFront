@@ -10,22 +10,19 @@
 
 .npc-display {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Creates three columns */
-  grid-gap: 10px; /* Adjust for spacing between components */
-  width: 100%; /* Adjust width as needed, or max-width for maximum width */
-  max-width: 960px; /* Adjust as needed */
-  margin: 0 auto; /* Centers the grid in the parent container */
+  grid-template-columns: repeat(3, 1fr); /* Three columns of equal width */
+  gap: 10px; /* Space between grid items */
 }
 
 .npc-display > div {
   min-height: 150px; /* Set a min-height that you think will hold your largest content */
   width: 90%; /* Or whatever width you prefer */
   margin-bottom: 20px; /* Spacing between elements */
-  display: flex;
-  
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* display: flex; */
+  background-color: #78027a;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* text-align: center; */
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
@@ -33,7 +30,21 @@
   background-repeat: no-repeat;
   background-position: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  flex-grow: 1; /* This will make all the child divs grow as large as the tallest one */
+  /*flex-grow: 1; /* This will make all the child divs grow as large as the tallest one */
+}
+
+/* Medium screens - 2 columns */
+@media (max-width: 1024px) { /* Adjust the breakpoint as needed */
+  .npc-display {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small screens - 1 column */
+@media (max-width: 768px) {
+  .npc-display {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Centering the button */
@@ -114,7 +125,7 @@
 }
 
 /* Add this if your sections are block elements and not centered */
-.description-container, .personality-container, .stats-container, .skills-container, .name-container, .npc-display, .class-container, .description, .App {
+.description-container, .personality-container, .stats-container, .skills-container, .name-container, .class-container, .description, .App {
   display: flex;
   flex-direction: column;
   align-items: center;
